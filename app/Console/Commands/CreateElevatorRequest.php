@@ -38,7 +38,7 @@ class CreateElevatorRequest extends Command
     /**
      * Execute the console command.
      *
-     * @return \Integer
+     * @return int
      */
     public function handle()
     {
@@ -60,11 +60,11 @@ class CreateElevatorRequest extends Command
     /**
      * [findBestElevator description]
      *
-     * @param  \Integer $from
-     * @param  \Integer $to
+     * @param  int $from
+     * @param  int $to
      * @return \App\Elevator
      */
-    protected function findBestElevator($from, $to)
+    protected function findBestElevator(int $from, int $to)
     {
         $direction = $from > $to ? 'down' : 'up';
 

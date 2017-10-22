@@ -28,11 +28,11 @@ class Elevator extends Model
     /**
      * Scope a query to include elevators moving to the given floor.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \Integer $floor
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  int $floor
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeMovingTo($query, $floor)
+    public function scopeMovingTo($query, int $floor)
     {
         return $query->where(function ($query) {
                 $query->where('direction', 'down')
@@ -46,7 +46,7 @@ class Elevator extends Model
     /**
      * Scope a query to include only standing elevators.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeStanding($query)
@@ -58,11 +58,11 @@ class Elevator extends Model
      * Scope a query to only include elevators in the same
      * floor than the given one.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \Integer $floor
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  int $floor
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeWhichCurrentLocation($query, $floor)
+    public function scopeWhichCurrentLocation($query, int $floor)
     {
         return $query->where('current_floor', $floor);
     }
