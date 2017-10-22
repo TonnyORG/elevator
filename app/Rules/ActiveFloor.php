@@ -32,7 +32,7 @@ class ActiveFloor implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (in_array($value, array_keys($this->floors))) {
+        if (!in_array($value, array_keys($this->floors))) {
             return false;
         }
 
