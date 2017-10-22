@@ -26,4 +26,6 @@ return [
         'open' => 'Open',
     ],
 
+    'total' => 2,
+
 ];
