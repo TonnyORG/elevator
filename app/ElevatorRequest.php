@@ -124,10 +124,10 @@ class ElevatorRequest extends Model
      */
     public function scopePendingForFloor($query, int $floor)
     {
-        return $query->where(function ($query) {
+        return $query->where(function ($query) use ($floor) {
                 $query->where('completed', 0)
                     ->where('to', $floor);
-            })->orWhere(function ($query) {
+            })->orWhere(function ($query) use ($floor) {
                 $query->where('started', 0)
                     ->where('from', $floor);
             });
