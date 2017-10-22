@@ -50,7 +50,7 @@ class CreateElevatorRequest extends Command
             'to' => $to,
         ]);
 
-        $elevatorRequest->associate(
+        $elevatorRequest->elevator()->associate(
                 $this->findBestElevator($from, $to)
             )->save();
 
