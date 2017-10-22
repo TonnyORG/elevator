@@ -16,6 +16,7 @@ class ElevatorRequest extends Model
         'elevator_id',
         'form',
         'to',
+        'started',
     ];
 
     /**
@@ -36,5 +37,17 @@ class ElevatorRequest extends Model
     public function scopeIncomplete($query)
     {
         return $query->where('completed', 0);
+    }
+
+    /**
+     * Scope a query to only include elevator requests
+     * that haven't even started.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNotEvenStarted($query)
+    {
+        return $query->where('started', 0);
     }
 }
