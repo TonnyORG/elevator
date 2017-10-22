@@ -69,12 +69,20 @@ class CreateElevatorRequest extends Command
         $direction = $from > $to ? 'down' : 'up';
 
         $elevator = Elevator::whichCurrentLocation($from)->first();
-
         if ($elevator) {
             return $elevator;
         }
 
-        return Elevator::movingTo($from)->first()
-            || Elevator::standing()->first();
+        $elevator = Elevator::movingTo($from)->first();
+        if ($elevator) {
+            return $elevator;
+        }
+
+        $elevator = Elevator::standing()->first();
+        if ($elevator) {
+            return $elevator;
+        }
+
+        return Elevator::first();
     }
 }
