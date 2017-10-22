@@ -16,16 +16,18 @@ class CreateElevatorsTable extends Migration
         Schema::create('elevators', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('elevator_request_id')->nullable();
-            $table->integer('current_floor');
+            $table->integer('current_floor')->default(1);
             $table->enum('direction', [
                     'down',
                     'stand',
                     'up',
-                ]);
+                ])
+                ->default('stand');
             $table->enum('signal', [
                     'closed',
                     'open',
-                ]);
+                ])
+                ->default('closed');
             $table->timestamps();
         });
     }
