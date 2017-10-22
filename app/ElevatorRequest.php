@@ -37,6 +37,18 @@ class ElevatorRequest extends Model
     }
 
     /**
+     * Scope a query to only include completed elevator
+     * requests.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCompleted($query)
+    {
+        return $query->where('completed', 1);
+    }
+
+    /**
      * Scope a query to only include incomplete elevator
      * requests.
      *
