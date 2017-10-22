@@ -15,7 +15,7 @@ class AddStartedToElevatorRequestsTable extends Migration
     {
         Schema::table('elevator_requests', function (Blueprint $table) {
             $table->boolean('started')
-                ->defualt(false)
+                ->default(false)
                 ->before('completed');
 
             $table->index('started');

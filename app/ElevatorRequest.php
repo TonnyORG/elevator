@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ElevatorRequest extends Model
 {
@@ -23,7 +24,7 @@ class ElevatorRequest extends Model
     protected $fillable = [
         'completed',
         'elevator_id',
-        'form',
+        'from',
         'to',
         'started',
     ];
@@ -40,7 +41,7 @@ class ElevatorRequest extends Model
      * Scope a query to only include completed elevator
      * requests.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCompleted($query)
@@ -52,7 +53,7 @@ class ElevatorRequest extends Model
      * Scope a query to only include incomplete elevator
      * requests.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeIncomplete($query)
@@ -61,10 +62,24 @@ class ElevatorRequest extends Model
     }
 
     /**
+     * Scope a query to only include incomplete elevator
+     * requests.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  int $floor
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIncompleteForFloor($query, int $floor)
+    {
+        return self::scopeIncomplete($query)
+            ->where('to', $floor);
+    }
+
+    /**
      * Scope a query to only include elevator requests
      * that haven't even started.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeNotEvenStarted($query)
@@ -73,15 +88,48 @@ class ElevatorRequest extends Model
     }
 
     /**
+     * Scope a query to only include elevator requests
+     * that haven't even started for the given floor.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  int $floor
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNotEvenStartedForFloor($query, int $floor)
+    {
+        return self::scopeNotEvenStarted($query)
+            ->where('from', $floor);
+    }
+
+    /**
      * Scope a query to only include pending elevator
      * requests.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePending($query)
     {
         return $query->where('completed', 0)
             ->orWhere('started', 0);
+    }
+
+    /**
+     * Scope a query to only include pending elevator
+     * requests for the given floor.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  int $floor
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePendingForFloor($query, int $floor)
+    {
+        return $query->where(function ($query) {
+                $query->where('completed', 0)
+                    ->where('to', $floor);
+            })->orWhere(function ($query) {
+                $query->where('started', 0)
+                    ->where('from', $floor);
+            });
     }
 }

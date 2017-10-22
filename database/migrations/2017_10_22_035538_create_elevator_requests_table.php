@@ -15,8 +15,8 @@ class CreateElevatorRequestsTable extends Migration
     {
         Schema::create('elevator_requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('completed')->defualt(false);
-            $table->integer('form');
+            $table->boolean('completed')->default(false);
+            $table->integer('from');
             $table->integer('to');
             $table->timestamps();
         });

@@ -14,7 +14,9 @@ class AddElevatorIdToElevatorRequestsTable extends Migration
     public function up()
     {
         Schema::table('elevator_requests', function (Blueprint $table) {
-            $table->unsignedInteger('elevator_id')->nullable();
+            $table->unsignedInteger('elevator_id')
+                ->nullable()
+                ->after('id');
 
             $table->index('elevator_id');
         });
