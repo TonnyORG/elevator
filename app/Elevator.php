@@ -14,7 +14,14 @@ class Elevator extends Model
     protected $fillable = [
         'current_floor',
         'direction',
-        'elevator_request_id',
         'signal',
     ];
+
+    /**
+     * Get the elevator request associated with the elevator.
+     */
+    public function elevatorRequests()
+    {
+        return $this->hasMany(ElevatorRequest::class);
+    }
 }
