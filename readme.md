@@ -25,6 +25,7 @@ Feel free to contribute with any ideas or improvements. In order to do that, you
 
 There are a few things I would like to add into this project, and a few basic things are a way to view all the requests in real time through an visual panel or something. Based on that, here is the list of To-Dos I can think right now:
 
+- [ ] Build VueJS based components for the main UI.
 - [ ] Build UI to visualize the queue and real time elevator requests.
 - [ ] Build tests for models and controllers.
 
