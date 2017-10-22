@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Artisan;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
