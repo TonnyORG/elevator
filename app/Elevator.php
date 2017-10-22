@@ -34,10 +34,10 @@ class Elevator extends Model
      */
     public function scopeMovingTo($query, int $floor)
     {
-        return $query->where(function ($query) {
+        return $query->where(function ($query) use ($floor) {
                 $query->where('direction', 'down')
                     ->where('current_floor', '<=', $floor);
-            })->orWhere(function ($query) {
+            })->orWhere(function ($query) use ($floor) {
                 $query->where('direction', 'up')
                     ->where('current_floor', '>=', $floor);
             });
