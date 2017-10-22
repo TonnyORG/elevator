@@ -25,4 +25,16 @@ class ElevatorRequest extends Model
     {
         return $this->belongsTo(Elevator::class);
     }
+
+    /**
+     * Scope a query to only include incomplete elevator
+     * requests.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIncomplete($query)
+    {
+        return $query->where('completed', 0);
+    }
 }
