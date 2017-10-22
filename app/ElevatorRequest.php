@@ -50,4 +50,17 @@ class ElevatorRequest extends Model
     {
         return $query->where('started', 0);
     }
+
+    /**
+     * Scope a query to only include pending elevator
+     * requests.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePending($query)
+    {
+        return $query->where('completed', 0)
+            ->orWhere('started', 0);
+    }
 }
