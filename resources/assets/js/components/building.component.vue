@@ -24,12 +24,6 @@ import FloorsMixin from './mixins/floors';
 export default {
     mixins: [FloorsMixin],
 
-    data() {
-        return {
-            floors: [],
-        }
-    },
-
     components: {
         'floor-component' : FloorComponent,
     },
