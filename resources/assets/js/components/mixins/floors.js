@@ -8,23 +8,27 @@ export default {
     methods: {
         getFirstAvailableFloor() {
             for (let index in this.floors) {
-                if (this.floors[index].maintenance) {
+                if (!this.floors[index].maintenance) {
                     return this.floors[index];
                 }
             }
         },
 
         initFloorsArray() {
-            let floors = window.elevatorConfiguration.floors;
+            return new Promise((resolve, reject) => {
+                let floors = window.elevatorConfiguration.floors;
 
-            for (let index in floors) {
-                this.floors.push({
-                    maintenance: !floors[index],
-                    number: index,
-                });
-            }
+                for (let index in floors) {
+                    this.floors.push({
+                        maintenance: !floors[index],
+                        number: index,
+                    });
+                }
 
-            this.floors.sort(this.sortFloorsArray);
+                this.floors.sort(this.sortFloorsArray);
+
+                resolve(true);
+            });
         },
 
         sortFloorsArray(a, b) {
