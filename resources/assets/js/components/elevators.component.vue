@@ -32,9 +32,6 @@ export default {
             axios.get('/api/elevators')
                 .then(response => {
                     this.elevators = response.data;
-                })
-                .catch(error => {
-                    alert(error);
                 });
         },
     },
