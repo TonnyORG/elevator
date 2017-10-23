@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('building', require('./components/building.component.vue'));
+Vue.component('elevators', require('./components/elevators.component.vue'));
 
 const app = new Vue({
     el: '#app'
