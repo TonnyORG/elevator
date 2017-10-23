@@ -1,6 +1,6 @@
 <template>
     <tr>
-        <td :class="[!floor.maintenance ? 'table-active' : '']">{{ floor.number }}</td>
+        <td :class="[floor.maintenance ? 'table-active' : '']">{{ floor.number }}</td>
     </tr>
 </template>
 
