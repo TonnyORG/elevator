@@ -27,53 +27,13 @@
 
             <div class="row marketing">
                 <div class="col-2">
-                    <building></building>
+                    <building v-cloak></building>
                 </div>
 
                 <div class="col-10">
                     <elevators class="row"></elevators>
                         
-                    <form>
-                        <h4>New Request</h4>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="fromFloor">From</label>
-                                    <select class="form-control" id="fromFloor" name="fromFloor">
-                                        <option value="9">9</option>
-                                        <option value="8">8</option>
-                                        <option value="7">7</option>
-                                        <option value="6">6</option>
-                                        <option value="5">5</option>
-                                        <option value="4">4</option>
-                                        <option value="3">3</option>
-                                        <option value="2">2</option>
-                                        <option value="1">1</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="toFloor">To</label>
-                                    <select class="form-control" id="toFloor" name="toFloor">
-                                        <option value="9">9</option>
-                                        <option value="8">8</option>
-                                        <option value="7">7</option>
-                                        <option value="6">6</option>
-                                        <option value="5">5</option>
-                                        <option value="4">4</option>
-                                        <option value="3">3</option>
-                                        <option value="2">2</option>
-                                        <option value="1">1</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    <request v-cloak action="{{ action('API\ElevatorRequestController@store') }}"></request>
 
                     <hr />
 
