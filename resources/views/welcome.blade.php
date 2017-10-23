@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Elevator</title>
@@ -12,7 +13,7 @@
     <link rel="stylesheet" href="http://getbootstrap.com/docs/4.0/examples/narrow-jumbotron/narrow-jumbotron.css" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="app">
         <header class="header clearfix">
             <h3 class="text-muted">Elevator</h3>
         </header>
@@ -26,26 +27,7 @@
 
             <div class="row marketing">
                 <div class="col-2">
-                    <table class="table table-bordered table-sm text-center">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>
-                                    <i class="fa fa-building"></i>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>9</td></tr>
-                            <tr><td>8</td></tr>
-                            <tr><td>7</td></tr>
-                            <tr><td>6</td></tr>
-                            <tr><td>5</td></tr>
-                            <tr><td>4</td></tr>
-                            <tr><td>3</td></tr>
-                            <tr class="table-active"><td>2</td></tr>
-                            <tr><td>1</td></tr>
-                        </tbody>
-                    </table>
+                    <building></building>
                 </div>
 
                 <div class="col-10">
@@ -143,5 +125,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/e13a770015.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var elevatorConfiguration = {!! json_encode(config('elevator')) !!};
+    </script>
+    <script src="/js/app.js" type="text/javascript"></script>
 </body>
 </html>
