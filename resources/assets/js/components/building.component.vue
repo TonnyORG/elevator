@@ -19,8 +19,11 @@
 
 <script>
 import FloorComponent from './floor.component.vue';
+import FloorsMixin from './mixins/floors';
 
 export default {
+    mixins: [FloorsMixin],
+
     data() {
         return {
             floors: [],
@@ -32,30 +35,7 @@ export default {
     },
 
     created() {
-        let floors = window.elevatorConfiguration.floors;
-
-        for (let index in floors) {
-            this.floors.push({
-                maintenance: floors[index],
-                number: index,
-            });
-        }
-
-        this.floors.sort(this.sortFloorsArray);
-    },
-
-    methods: {
-        sortFloorsArray(a, b) {
-            if (a.number > b.number) {
-                return -1;
-            }
-
-            if (a.number < b.number) {
-                return 1;
-            }
-
-            return 0;
-        },
+        this.initFloorsArray();
     },
 }
 </script>
